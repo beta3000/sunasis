@@ -1,6 +1,8 @@
 package com.sunat.sunasis.model;
 
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,22 +10,40 @@ import javax.persistence.*;
 public class CompanyModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "The database generated company ID")
     private long id;
-
+    @Version
+    @ApiModelProperty(notes = "The auto-generated version of the company")
+    private Integer version;
+    @ApiModelProperty(notes = "The company ruc")
     private String ruc;
+    @ApiModelProperty(notes = "The company razonSocial")
     private String razonSocial;
+    @ApiModelProperty(notes = "The company estado")
     private String estado;
+    @ApiModelProperty(notes = "The company condicion")
     private String condicion;
+    @ApiModelProperty(notes = "The company ubigeo")
     private String ubigeo;
+    @ApiModelProperty(notes = "The company tipoVia")
     private String tipoVia;
+    @ApiModelProperty(notes = "The company nombreVia")
     private String nombreVia;
+    @ApiModelProperty(notes = "The company codigoZona")
     private String codigoZona;
+    @ApiModelProperty(notes = "The company tipoZona")
     private String tipoZona;
+    @ApiModelProperty(notes = "The company numero")
     private String numero;
+    @ApiModelProperty(notes = "The company interior")
     private String interior;
+    @ApiModelProperty(notes = "The company lote")
     private String lote;
+    @ApiModelProperty(notes = "The company departamento")
     private String departamento;
+    @ApiModelProperty(notes = "The company manzana")
     private String manzana;
+    @ApiModelProperty(notes = "The company kilometro")
     private String kilometro;
 
     public CompanyModel() {
@@ -53,6 +73,14 @@ public class CompanyModel {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getRuc() {

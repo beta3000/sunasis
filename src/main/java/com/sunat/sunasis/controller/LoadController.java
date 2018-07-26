@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/load")
+@RequestMapping("/api/load")
 public class LoadController {
     @Autowired
     JobLauncher jobLauncher;
