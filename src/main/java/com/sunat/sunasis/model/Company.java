@@ -1,55 +1,92 @@
 package com.sunat.sunasis.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "COMPANY")
-public class CompanyModel {
+@Table(name = "company")
+@NamedQueries(value = {
+        @NamedQuery(name = "getCompaniesByRucOrRazonSocial", query = "select c from Company c where lower(c.razonSocial) like :razonSocial or c.ruc=:ruc")
+})
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(notes = "The database generated company ID")
     private long id;
-    @Version
-    @ApiModelProperty(notes = "The auto-generated version of the company")
-    private Integer version;
-    @ApiModelProperty(notes = "The company ruc")
+
+    @NotNull
+    @Column(name = "ruc")
     private String ruc;
-    @ApiModelProperty(notes = "The company razonSocial")
+
+    @NotNull
+    @Column(name = "razon_social")
     private String razonSocial;
-    @ApiModelProperty(notes = "The company estado")
+
+    @NotNull
+    @Column(name = "estado_contribuyente")
     private String estado;
-    @ApiModelProperty(notes = "The company condicion")
+
+    @NotNull
+    @Column(name = "condicion_domicilio")
     private String condicion;
-    @ApiModelProperty(notes = "The company ubigeo")
+
+    @NotNull
+    @Column(name = "ubigeo")
     private String ubigeo;
-    @ApiModelProperty(notes = "The company tipoVia")
+
+    @NotNull
+    @Column(name = "tipo_via")
     private String tipoVia;
-    @ApiModelProperty(notes = "The company nombreVia")
+
+    @NotNull
+    @Column(name = "nombre_via")
     private String nombreVia;
-    @ApiModelProperty(notes = "The company codigoZona")
+
+    @NotNull
+    @Column(name = "codigo_zona")
     private String codigoZona;
-    @ApiModelProperty(notes = "The company tipoZona")
+
+    @NotNull
+    @Column(name = "tipo_zona")
     private String tipoZona;
-    @ApiModelProperty(notes = "The company numero")
+
+    @NotNull
+    @Column(name = "numero")
     private String numero;
-    @ApiModelProperty(notes = "The company interior")
+
+    @NotNull
+    @Column(name = "interior")
     private String interior;
-    @ApiModelProperty(notes = "The company lote")
+    @NotNull
+    @Column(name = "lote")
     private String lote;
-    @ApiModelProperty(notes = "The company departamento")
+
+    @NotNull
+    @Column(name = "departamento")
     private String departamento;
-    @ApiModelProperty(notes = "The company manzana")
+
+    @NotNull
+    @Column(name = "manzana")
     private String manzana;
-    @ApiModelProperty(notes = "The company kilometro")
+
+    @NotNull
+    @Column(name = "kilometro")
     private String kilometro;
 
-    public CompanyModel() {
+/*    @JsonIgnore
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "version", foreignKey = @ForeignKey)
+    private Version version;*/
+
+    public Company() {
     }
 
-    public CompanyModel(String ruc, String razonSocial, String estado, String condicion, String ubigeo, String tipoVia, String nombreVia, String codigoZona, String tipoZona, String numero, String interior, String lote, String departamento, String manzana, String kilometro) {
+    public Company(@NotNull String ruc, @NotNull String razonSocial, @NotNull String estado, @NotNull String condicion, @NotNull String ubigeo, @NotNull String tipoVia, @NotNull String nombreVia, @NotNull String codigoZona, @NotNull String tipoZona, @NotNull String numero, @NotNull String interior, @NotNull String lote, @NotNull String departamento, @NotNull String manzana, @NotNull String kilometro) {
         this.ruc = ruc;
         this.razonSocial = razonSocial;
         this.estado = estado;
@@ -75,137 +112,144 @@ public class CompanyModel {
         this.id = id;
     }
 
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
+    @NotNull
     public String getRuc() {
         return ruc;
     }
 
-    public void setRuc(String ruc) {
+    public void setRuc(@NotNull String ruc) {
         this.ruc = ruc;
     }
 
+    @NotNull
     public String getRazonSocial() {
         return razonSocial;
     }
 
-    public void setRazonSocial(String razonSocial) {
+    public void setRazonSocial(@NotNull String razonSocial) {
         this.razonSocial = razonSocial;
     }
 
+    @NotNull
     public String getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(@NotNull String estado) {
         this.estado = estado;
     }
 
+    @NotNull
     public String getCondicion() {
         return condicion;
     }
 
-    public void setCondicion(String condicion) {
+    public void setCondicion(@NotNull String condicion) {
         this.condicion = condicion;
     }
 
+    @NotNull
     public String getUbigeo() {
         return ubigeo;
     }
 
-    public void setUbigeo(String ubigeo) {
+    public void setUbigeo(@NotNull String ubigeo) {
         this.ubigeo = ubigeo;
     }
 
+    @NotNull
     public String getTipoVia() {
         return tipoVia;
     }
 
-    public void setTipoVia(String tipoVia) {
+    public void setTipoVia(@NotNull String tipoVia) {
         this.tipoVia = tipoVia;
     }
 
+    @NotNull
     public String getNombreVia() {
         return nombreVia;
     }
 
-    public void setNombreVia(String nombreVia) {
+    public void setNombreVia(@NotNull String nombreVia) {
         this.nombreVia = nombreVia;
     }
 
+    @NotNull
     public String getCodigoZona() {
         return codigoZona;
     }
 
-    public void setCodigoZona(String codigoZona) {
+    public void setCodigoZona(@NotNull String codigoZona) {
         this.codigoZona = codigoZona;
     }
 
+    @NotNull
     public String getTipoZona() {
         return tipoZona;
     }
 
-    public void setTipoZona(String tipoZona) {
+    public void setTipoZona(@NotNull String tipoZona) {
         this.tipoZona = tipoZona;
     }
 
+    @NotNull
     public String getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(@NotNull String numero) {
         this.numero = numero;
     }
 
+    @NotNull
     public String getInterior() {
         return interior;
     }
 
-    public void setInterior(String interior) {
+    public void setInterior(@NotNull String interior) {
         this.interior = interior;
     }
 
+    @NotNull
     public String getLote() {
         return lote;
     }
 
-    public void setLote(String lote) {
+    public void setLote(@NotNull String lote) {
         this.lote = lote;
     }
 
+    @NotNull
     public String getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(@NotNull String departamento) {
         this.departamento = departamento;
     }
 
+    @NotNull
     public String getManzana() {
         return manzana;
     }
 
-    public void setManzana(String manzana) {
+    public void setManzana(@NotNull String manzana) {
         this.manzana = manzana;
     }
 
+    @NotNull
     public String getKilometro() {
         return kilometro;
     }
 
-    public void setKilometro(String kilometro) {
+    public void setKilometro(@NotNull String kilometro) {
         this.kilometro = kilometro;
     }
 
     @Override
     public String toString() {
-        return "CompanyModel{" +
+        return "Company{" +
                 "id=" + id +
                 ", ruc='" + ruc + '\'' +
                 ", razonSocial='" + razonSocial + '\'' +

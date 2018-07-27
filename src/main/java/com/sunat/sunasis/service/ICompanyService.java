@@ -1,18 +1,24 @@
 package com.sunat.sunasis.service;
 
-import com.sunat.sunasis.model.CompanyModel;
+import com.sunat.sunasis.model.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ICompanyService {
 
-    CompanyModel  findByRazonSocialOrRuc(String razonSocial,String ruc);
+    Company findByRazonSocialOrRuc(String razonSocial, String ruc);
 
-    Page<CompanyModel> getAll(Pageable pageable);
+    Page<Company> getAll(Pageable pageable);
 
-    CompanyModel getById(Long id);
+    Company getById(Long id);
 
-    Page<CompanyModel> findByRazonSocialContains(String razonSocial,Pageable pageable);
+    Page<Company> findByRazonSocialContains(String razonSocial, Pageable pageable);
 
-    CompanyModel findByRuc(String ruc);
+    Company findByRazonSocialIgnoreCase(String razonSocial);
+
+    Company findByRuc(String ruc);
+
+    List<Company> getCompaniesByRucOrRazonSocial(String razonSocial, String ruc);
 }

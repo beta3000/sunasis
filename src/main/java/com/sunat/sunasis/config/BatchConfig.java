@@ -1,6 +1,5 @@
 package com.sunat.sunasis.config;
 
-import com.sunat.sunasis.utils.AppUtils;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -9,24 +8,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 @EnableBatchProcessing
 @EnableScheduling
-public class BatchConfiguration {
+public class BatchConfig {
 
     @Autowired
     JobLauncher jobLauncher;
 
     @Autowired
     Job job;
-
-    @Scheduled(cron = "0 0 4 * * *")
+    //@Scheduled(cron = "segundo minuto hora dia-mes mes dia-semana")
+    @Scheduled(cron = "0 28 17 * * *")
     public BatchStatus process() throws Exception {
         Map<String, JobParameter> maps = new HashMap<>();
         maps.put("time", new JobParameter(System.currentTimeMillis()));
@@ -37,15 +33,6 @@ public class BatchConfiguration {
         while (jobExecution.isRunning()) {
             System.out.println("...");
         }
-        deleteFile();
         return jobExecution.getStatus();
-    }
-
-    private String deleteFile() throws Exception {
-        Path path = Paths.get(AppUtils.UNZIP_FILE_NAME);
-        if (Files.exists(path)) {
-            Files.delete(path);
-        }
-        return javax.batch.runtime.BatchStatus.COMPLETED.toString();
     }
 }
