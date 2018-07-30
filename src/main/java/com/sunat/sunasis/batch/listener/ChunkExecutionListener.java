@@ -11,17 +11,12 @@ public class ChunkExecutionListener extends ChunkListenerSupport {
 
     @Override
     public void afterChunk(ChunkContext context) {
-        logger.info("After chunk");
         super.afterChunk(context);
     }
 
     @Override
     public void beforeChunk(ChunkContext context) {
         context.attributeNames();
-        logger.info("Before chunk");
         super.beforeChunk(context);
     }
-
-
-
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class CompanyProcessor implements ItemProcessor<Company, Company> {
     @Override
     public Company process(Company company) throws Exception {
+        System.out.println(company);
         return company;
     }
 }

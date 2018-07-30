@@ -47,6 +47,6 @@ public class CompanyService implements ICompanyService {
 
     @Override
     public List<Company> getCompaniesByRucOrRazonSocial(String razonSocial, String ruc) {
-        return repository.getCompaniesByRucOrRazonSocial(razonSocial, ruc);
+        return null;//repository.getCompaniesByRucOrRazonSocial(razonSocial, ruc);
     }
 }

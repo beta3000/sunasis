@@ -21,8 +21,9 @@ public class BatchConfig {
 
     @Autowired
     Job job;
+
     //@Scheduled(cron = "segundo minuto hora dia-mes mes dia-semana")
-    @Scheduled(cron = "0 28 17 * * *")
+    @Scheduled(cron = "0 28 12 * * *")
     public BatchStatus process() throws Exception {
         Map<String, JobParameter> maps = new HashMap<>();
         maps.put("time", new JobParameter(System.currentTimeMillis()));

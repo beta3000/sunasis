@@ -10,38 +10,32 @@ import java.util.Date;
 @Table(name = "version")
 public class Version {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @NotNull
-    @Column(name = "number")
     private long number;
 
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date")
     private Date date;
 
-    @NotNull
     @Type(type = "org.hibernate.type.TrueFalseType")
     @Column(name = "complete")
     private boolean complete;
 
     public Version() {
-
     }
 
-    public Version(String id, long number, @NotNull Date date, boolean complete) {
-        this.id = id;
+    public Version(long number, Date date, boolean complete) {
         this.number = number;
         this.date = date;
         this.complete = complete;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,12 +47,11 @@ public class Version {
         this.number = number;
     }
 
-    @NotNull
     public Date getDate() {
         return date;
     }
 
-    public void setDate(@NotNull Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
